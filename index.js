@@ -78,3 +78,33 @@ app.post('/update', async (req, res) => {
 
 // * Localhost
 app.listen(3000, () => console.log('Listening on http://localhost:3000'));
+app.get('/', async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${hsBaseUrl}/crm/v3/objects/${customObjectId}/?limit=100`,
+      { headers }
+    );
+    const records = response.data.results;
+    res.render('homepage', { records });
+  } catch (error) {
+    console.error(error);
+    res.send('Error fetching data');
+  }
+});
+app.get('/update-cobj', (req, res) => {
+  res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum' });
+});
+app.post('/update-cobj', async (req, res) => {
+  try {
+    const data = req.body;
+    await axios.post(
+      `${hsBaseUrl}/crm/v3/objects/${customObjectId}/`,
+      { properties: data },
+      { headers }
+    );
+    res.redirect('/');
+  } catch (error) {
+    console.error(error);
+    res.send('Error creating record');
+  }
+});
