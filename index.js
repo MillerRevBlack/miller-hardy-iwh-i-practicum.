@@ -1,3 +1,12 @@
+require('dotenv').config();
+const hsAccessToken = process.env.HS_API_KEY;
+const customObjectId = process.env.HS_CUSTOM_OBJECT_ID;
+const hsBaseUrl = 'https://api.hubspot.com';
+const headers = {
+  'Authorization': `Bearer ${hsAccessToken}`,
+  'Content-Type': 'application/json'
+};
+
 const express = require('express');
 const axios = require('axios');
 const app = express();
