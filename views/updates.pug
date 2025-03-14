@@ -1,0 +1,16 @@
+html
+  head
+    title= title
+  body
+    a(href='/') Return to the homepage
+    form(method='POST' action='/update-cobj')
+      div
+        label Name:
+        input(type='text' name='name' required)
+      div
+        label Type:
+        input(type='text' name='type' required)
+      div
+        label Age:
+        input(type='number' name='age' required)
+      button(type='submit') Submit
