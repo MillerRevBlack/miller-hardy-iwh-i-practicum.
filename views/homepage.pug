@@ -1,0 +1,17 @@
+html
+  head
+    title Homepage
+  body
+    a(href='/update-cobj') Add to this table
+    table
+      thead
+        tr
+          th Name
+          th Type
+          th Age
+      tbody
+        each record in records
+          tr
+            td= record.properties.name
+            td= record.properties.type
+            td= record.properties.age
